@@ -370,8 +370,84 @@ summary {
 </div>
 
 
-<div id="section" class="section level2">
-<h2></h2>
+<div id="compute-z-score" class="section level2">
+<h2>compute z-score</h2>
+<pre class="r"><code>x = rnorm(25, mean = 5, sd = 3)
+y = 
+
+(x - mean(x)) / sd(x)</code></pre>
+<pre class="r"><code>z_scores = function(x) {
+  
+  z = (x - mean(x)) / sd(x)
+  z
+  
+}</code></pre>
+<p>Try out the function</p>
+<pre class="r"><code>z_scores(x)</code></pre>
+<pre><code>##  [1] -0.83687228  0.01576465 -1.05703126  1.50152998  0.16928872
+##  [6] -1.04107494  0.33550276  0.59957343  0.42849461 -0.49894708
+## [11]  1.41364561  0.23279252 -0.83138529 -2.50852027  1.00648110
+## [16] -0.22481531 -0.19456260  0.81587675  0.68682298  0.44756609
+## [21]  0.78971253  0.64568566 -0.09904161 -2.27133861  0.47485186</code></pre>
+<pre class="r"><code>z_scores(x = c(TRUE, TRUE, FALSE, FALSE))</code></pre>
+<pre><code>## [1]  0.8660254  0.8660254 -0.8660254 -0.8660254</code></pre>
+<pre class="r"><code>z_scores(&quot;My name is Jared&quot;)</code></pre>
+<pre><code>## Error in x - mean(x): non-numeric argument to binary operator</code></pre>
+<pre class="r"><code>z_scores(iris)</code></pre>
+<pre><code>## Error in is.data.frame(x): (list) object cannot be coerced to type &#39;double&#39;</code></pre>
+<pre class="r"><code>z_scores(3)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>z_scores = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop(&quot;Argument x should be numeric&quot;)
+  } else if (length(x) &lt; 3) {
+    stop(&quot;x should be longer than 3&quot;)
+  }
+  
+  z = (x - mean(x)) / sd(x)
+  
+  z
+}</code></pre>
+</div>
+<div id="multiple-outputs" class="section level2">
+<h2>Multiple outputs</h2>
+<pre class="r"><code>mean_and_sd = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop(&quot;Argument x should be numeric&quot;)
+  } else if (length(x) &lt; 3) {
+    stop(&quot;x should be longer than 3&quot;)
+  }
+  
+  mean_x = mean(x)
+  sd_x = sd(x)
+
+  list(mean = mean_x, 
+       sd = sd_x,
+       z_score = (x - mean(x)/sd(x)))
+}</code></pre>
+<pre class="r"><code>mean_and_sd = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop(&quot;Argument x should be numeric&quot;)
+  } else if (length(x) &lt; 3) {
+    stop(&quot;Argument x should be longer than 3&quot;)
+  }
+  
+  mean_x = mean(x)
+  sd_x = sd(x)
+
+  tibble(
+    mean = mean_x, 
+    sd = sd_x
+  )
+}</code></pre>
+<pre class="r"><code>mean_and_sd(x)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  5.51  2.85</code></pre>
 </div>
 
 
