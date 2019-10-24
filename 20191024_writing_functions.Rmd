@@ -1,0 +1,14 @@
+---
+title: "20191024_writing_functions"
+author: "Jared Garfinkel"
+date: "10/24/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+## 
